@@ -1165,6 +1165,10 @@ input:checked + .toggle-bg {
   height: 2.25rem;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -1245,6 +1249,14 @@ input:checked + .toggle-bg {
 
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .items-start {
@@ -1368,6 +1380,30 @@ input:checked + .toggle-bg {
 
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
+}
+
+.bg-\[url\(\.\/assets\/pokemondragonbg\.png\)\] {
+  background-image: url(./assets/pokemondragonbg.png);
+}
+
+.bg-\[url\(\/assets\/pokemondragonbg\.png\)\] {
+  background-image: url(/assets/pokemondragonbg.png);
+}
+
+.bg-\[url\(\/assets\/pokemonfirebg\.png\)\] {
+  background-image: url(/assets/pokemonfirebg.png);
+}
+
+.bg-contain {
+  background-size: contain;
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
 }
 
 .p-1 {
