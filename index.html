@@ -1,42 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex Page</title>
-    <link rel="stylesheet" href="./dist/output.css">
-    <link rel="stylesheet" href="./styles/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />
-</head>
-<body>
-    
-    <div class="flex flex-wrap">
+    <link rel="stylesheet" href="./dist/output.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <div class="flex justify-center xl:justify-between h-[97px]" style="margin-left: 18%; margin-right: 18%;">
+      <div class="text-[60px] hidden xl:block" style="font-family: Judson-Bold">Pokedex</div>
 
-        <div class="">
-            Pokedex
+      <div class="flex items-center">
+        <button class="bg-[#F78484] w-[70px] h-[61px] flex items-center justify-center rounded-2xl">
+          <img src="./assets/pokemonrandom.png" alt="shuffle icon" />
+        </button>
+
+        <div class="mx-5">
+            <input class="h-[61px] w-[379px] rounded-xl focus:outline-none focus:ring-0 text-2xl placeholder:text-black" type="text" placeholder="Search for a Pokemon" style="font-family: Jura-Regular;"/>
         </div>
-
-        <div class="grid grid-cols-3">
-            <button>
-                <img src="" alt="">
-            </button>
-            <input type="text">
-            <button>
-                <img src="" alt="">
-            </button>
-        </div>
-
-    </div>
-    
-    <div class="bg-[url(/assets/pokemonfirebg.png)] min-h-screen bg-cover">
         
+
+        <button class="bg-[#F78484] w-[70px] h-[61px] flex items-center justify-center rounded-2xl">
+          <img src="./assets/pokemonsearch.png" alt="search icon" />
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="bg-[url(/assets/pokemonfirebg.png)] min-h-screen bg-cover pt-[73px]"
+    >
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10" style="margin-left: 18%; margin-right: 18%;">
+        <div class="bg-white/75 h-[617px] rounded-3xl">
+            <div class="flex justify-center mt-10" style="margin-left: 7%;">
+                <div class="bg-white/75 rounded-[235px] px-5 py-5">
+                    <img class="h-[235px]" id="pokemonImg" src="./assets/pokemon1.png" alt="">
+                </div>
+                <div class="">
+                    <img class="" src="./assets/pokemonfavorite.png" alt="">
+                </div>
+                
+                
+            </div>
+
+            <div class="text-center text-[30px] mt-14" style="font-family: Jura-Bold;">
+                <p>Name: Charmander #4</p>
+                <p>Type: Fire</p>
+                <p>Location Found: N/A</p>
+            </div>
+        </div>
+        <div class="inline-flex flex-col justify-between">
+            <div class="bg-white/75 h-[290px] rounded-3xl mb-10">
+                <div class="mt-8" style="margin-left: 6.5%; margin-right: 6.5%;">
+                    <p class="text-[30px]" style="font-family: Jura-Bold;">Abilities</p>
+                    <div class="overflow-y-scroll h-44">
+                        <p class="text-[25px]" style="font-family: Jura-Regular;">blaze, solar-power</p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="bg-white/75 h-[290px] rounded-3xl">
+                <div class="mt-8" style="margin-left: 6.5%; margin-right: 6.5%;">
+                    <p class="text-[30px]" style="font-family: Jura-Bold;">Moves</p>
+                    <div class="overflow-y-scroll h-44">
+                        <p class="text-[25px]" style="font-family: Jura-Regular;">mega-punch, fire-punch, thunder-punch, scratch, swords-dance, cut, wing-attack, mega-kick, headbutt, body-slam, take-down, double-edge, leer, bite, growl, roar, ember, flamethrower, submission, counter, strength, dragon-rage, fire-spin</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white/75 h-[459px] rounded-3xl mt-10 " style="margin-left: 18%; margin-right: 18%;">
+        <p class="text-[40px]" style="font-family: Jura-Bold; padding-top: 3%; padding-left: 5%; padding-right: 5%;">Evolutions</p>
     </div>
 
 
+    <div class="hidden xl:block">
+
+
+
+
+<!-- drawer init and toggle -->
+<div class="text-center">
+    <button style="font-family: Jura-Regular;" class="text-black bg-white opacity-75 h-[83px] w-[398px] text-[30px] rounded-3xl px-5 py-2.5 mb-[113px] mt-[70px]" type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
+    Open Favorites
+    </button>
+ </div>
+ 
+ <!-- drawer component -->
+ <div id="drawer-example" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
+    <p class="text-[30px] mb-7" style="font-family: Jura-Bold;">Favorites</p>
+    <button type="button" data-drawer-hide="drawer-example" aria-controls="drawer-example" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-6 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+       <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+       </svg>
+       <span class="sr-only">Close menu</span>
+    </button>
+       
+
+    <!-- create element -->
+    <div class="bg-[#F08030] h-[58px] rounded-2xl flex items-center justify-between px-3 text-[20px] mb-5" style="font-family: Jura-Bold;">
+        <p>
+            Charmander #4
+        </p>
+           <img src="./assets/pokemonremove.png" alt="">     
+    </div>
+    <!-- create element end -->
+    
+
+    
+    
+ </div>
+ 
+
+ 
+    </div>
+
+    </div>
+
+
+
+
+ 
 
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="./scripts/app.js"></script>
-
-</body>
+  </body>
 </html>
