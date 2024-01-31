@@ -8,46 +8,61 @@
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
-    <div class="flex justify-center xl:justify-between h-[97px]" style="margin-left: 18%; margin-right: 18%;">
+    <div class="flex justify-center xl:justify-between h-[97px] canvasBG">
       <div class="text-[60px] hidden xl:block" style="font-family: Judson-Bold">Pokedex</div>
 
       <div class="flex items-center">
-        <button class="bg-[#F78484] w-[70px] h-[61px] flex items-center justify-center rounded-2xl">
-          <img src="./assets/pokemonrandom.png" alt="shuffle icon" />
-        </button>
-
-        <div class="mx-5">
-            <input class="h-[61px] w-[379px] rounded-xl focus:outline-none focus:ring-0 text-2xl placeholder:text-black" type="text" placeholder="Search for a Pokemon" style="font-family: Jura-Regular;"/>
+        <div class="hidden sm:block">
+            <button id="pokemonRandom1" class="bg-[#F78484] w-[70px] h-[61px] flex items-center justify-center rounded-2xl">
+                <img src="./assets/pokemonrandom.png" alt="shuffle icon" />
+            </button> 
         </div>
         
 
-        <button class="bg-[#F78484] w-[70px] h-[61px] flex items-center justify-center rounded-2xl">
+        <div class="mx-5">
+            <input id="pokemonInput" class="h-[50px] w-[275px] sm:h-[61px] sm:w-[379px] rounded-xl focus:outline-none focus:ring-0 text-xl sm:text-2xl placeholder:text-black" type="text" placeholder="Search for a Pokemon" style="font-family: Jura-Regular;"/>
+        </div>
+        
+
+        <button id="pokemonSearchBtn" class="bg-[#F78484] w-[57px] h-[50px] sm:w-[70px] sm:h-[61px] flex items-center justify-center rounded-xl sm:rounded-2xl">
           <img src="./assets/pokemonsearch.png" alt="search icon" />
         </button>
       </div>
+      
     </div>
-
+<div class="flex justify-center">
+        <div class="block sm:hidden">
+            <button id="pokemonRandom2" class="bg-[#F89494] h-[46px] w-[354px] rounded-xl text-white text-[20px] mb-7 ms-4" style="font-family: Jura-Bold;">
+                Randomize
+            </button>
+      </div>
+      </div>
     <div
-      class="bg-[url(/assets/pokemonfirebg.png)] min-h-screen bg-cover pt-[73px]"
+      id="pokemonBG" class="bg-[url(/assets/pokemongrassbg.png)] min-h-screen bg-cover pt-[73px]"
     >
 
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10" style="margin-left: 18%; margin-right: 18%;">
-        <div class="bg-white/75 h-[617px] rounded-3xl">
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 canvasBG">
+        <div class="bg-white/75 h-auto xl:h-[617px] rounded-3xl">
             <div class="flex justify-center mt-10" style="margin-left: 7%;">
                 <div class="bg-white/75 rounded-[235px] px-5 py-5">
-                    <img class="h-[235px]" id="pokemonImg" src="./assets/pokemon1.png" alt="">
+                    <img class="h-[235px]" id="pokemonImg" src="./assets/pokemon1.png" alt="charmander" style="cursor: pointer;">
                 </div>
                 <div class="">
-                    <img class="" src="./assets/pokemonfavorite.png" alt="">
+                    <img class="" id="addFavoriteBtn" src="./assets/pokemonfavorite.png" alt="favorite icon" style="cursor: pointer;">
                 </div>
                 
                 
             </div>
 
-            <div class="text-center text-[30px] mt-14" style="font-family: Jura-Bold;">
-                <p>Name: Charmander #4</p>
-                <p>Type: Fire</p>
-                <p>Location Found: N/A</p>
+            <div class="text-center text-[30px] mt-14 mx-7" style="font-family: Jura-Bold;">
+                <p id="pokemonName">Name: Charmander #4</p>
+                <p id="pokemonType">Type: Fire</p>
+                <p id="pokemonLocation">Location Found: N/A</p>
+                <div class="text-center">
+                    <button id="getFavoritesBtn2" style="font-family: Jura-Bold;" class="text-black bg-white opacity-75 h-[83px] w-[300px] sm:w-[398px] text-[30px] rounded-3xl px-5 py-2.5 mt-[37px] mb-[35px] xl:hidden" type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
+                    Open Favorites
+                    </button>
+                 </div>
             </div>
         </div>
         <div class="inline-flex flex-col justify-between">
@@ -55,7 +70,7 @@
                 <div class="mt-8" style="margin-left: 6.5%; margin-right: 6.5%;">
                     <p class="text-[30px]" style="font-family: Jura-Bold;">Abilities</p>
                     <div class="overflow-y-scroll h-44">
-                        <p class="text-[25px]" style="font-family: Jura-Regular;">blaze, solar-power</p>
+                        <p id="pokemonAbilities" class="text-[25px]" style="font-family: Jura-Regular;">blaze, solar-power</p>
                     </div>
                     
                 </div>
@@ -64,7 +79,7 @@
                 <div class="mt-8" style="margin-left: 6.5%; margin-right: 6.5%;">
                     <p class="text-[30px]" style="font-family: Jura-Bold;">Moves</p>
                     <div class="overflow-y-scroll h-44">
-                        <p class="text-[25px]" style="font-family: Jura-Regular;">mega-punch, fire-punch, thunder-punch, scratch, swords-dance, cut, wing-attack, mega-kick, headbutt, body-slam, take-down, double-edge, leer, bite, growl, roar, ember, flamethrower, submission, counter, strength, dragon-rage, fire-spin</p>
+                        <p id="pokemonMoves" class="text-[25px]" style="font-family: Jura-Regular;">mega-punch, fire-punch, thunder-punch, scratch, swords-dance, cut, wing-attack, mega-kick, headbutt, body-slam, take-down, double-edge, leer, bite, growl, roar, ember, flamethrower, submission, counter, strength, dragon-rage, fire-spin</p>
                     </div>
                     
                 </div>
@@ -72,23 +87,23 @@
         </div>
     </div>
 
-    <div class="bg-white/75 h-[459px] rounded-3xl mt-10 " style="margin-left: 18%; margin-right: 18%;">
+    <div class="bg-white/75 h-auto xl:h-[459px] rounded-3xl mt-10 canvasBG">
         <p class="text-[40px]" style="font-family: Jura-Bold; padding-top: 3%; padding-left: 5%; padding-right: 5%;">Evolutions</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+            <div></div>
+        </div>
     </div>
 
 
     <div class="hidden xl:block">
-
-
-
-
-<!-- drawer init and toggle -->
-<div class="text-center">
-    <button style="font-family: Jura-Regular;" class="text-black bg-white opacity-75 h-[83px] w-[398px] text-[30px] rounded-3xl px-5 py-2.5 mb-[113px] mt-[70px]" type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
-    Open Favorites
-    </button>
- </div>
- 
+        <!-- drawer init and toggle -->
+        <div class="text-center">
+            <button id="getFavoritesBtn1" style="font-family: Jura-Bold;" class="text-black bg-white opacity-75 h-[83px] w-[398px] text-[30px] rounded-3xl px-5 py-2.5 mb-[113px] mt-[70px]" type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
+                Open Favorites
+            </button>
+        </div>
+    </div>
+        
  <!-- drawer component -->
  <div id="drawer-example" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
     <p class="text-[30px] mb-7" style="font-family: Jura-Bold;">Favorites</p>
@@ -101,11 +116,8 @@
        
 
     <!-- create element -->
-    <div class="bg-[#F08030] h-[58px] rounded-2xl flex items-center justify-between px-3 text-[20px] mb-5" style="font-family: Jura-Bold;">
-        <p>
-            Charmander #4
-        </p>
-           <img src="./assets/pokemonremove.png" alt="">     
+    <div id="getFavoritesDiv">
+  
     </div>
     <!-- create element end -->
     
@@ -116,7 +128,6 @@
  
 
  
-    </div>
 
     </div>
 
