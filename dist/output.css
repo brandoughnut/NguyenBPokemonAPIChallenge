@@ -1159,6 +1159,10 @@ input:checked + .toggle-bg {
   margin-bottom: 0.5rem;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -1189,6 +1193,10 @@ input:checked + .toggle-bg {
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .mt-8 {
@@ -1275,10 +1283,6 @@ input:checked + .toggle-bg {
   height: 50px;
 }
 
-.h-\[58px\] {
-  height: 58px;
-}
-
 .h-\[61px\] {
   height: 61px;
 }
@@ -1331,6 +1335,10 @@ input:checked + .toggle-bg {
   width: 275px;
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
 .w-\[354px\] {
   width: 354px;
 }
@@ -1345,10 +1353,6 @@ input:checked + .toggle-bg {
 
 .w-\[70px\] {
   width: 70px;
-}
-
-.w-\[300px\] {
-  width: 300px;
 }
 
 .flex-1 {
@@ -1487,6 +1491,10 @@ input:checked + .toggle-bg {
   border-radius: 1.5rem;
 }
 
+.rounded-\[200px\] {
+  border-radius: 200px;
+}
+
 .rounded-\[235px\] {
   border-radius: 235px;
 }
@@ -1547,11 +1555,6 @@ input:checked + .toggle-bg {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-.bg-\[\#F08030\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 128 48 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#F78484\] {
   --tw-bg-opacity: 1;
   background-color: rgb(247 132 132 / var(--tw-bg-opacity));
@@ -1603,10 +1606,6 @@ input:checked + .toggle-bg {
   background-color: rgb(255 255 255 / 0.75);
 }
 
-.bg-\[url\(\/assets\/pokemonfirebg\.png\)\] {
-  background-image: url(/assets/pokemonfirebg.png);
-}
-
 .bg-\[url\(\/assets\/pokemongrassbg\.png\)\] {
   background-image: url(/assets/pokemongrassbg.png);
 }
@@ -1634,11 +1633,6 @@ input:checked + .toggle-bg {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }
 
 .px-5 {
@@ -1690,8 +1684,8 @@ input:checked + .toggle-bg {
   font-size: 30px;
 }
 
-.text-\[40px\] {
-  font-size: 40px;
+.text-\[35px\] {
+  font-size: 35px;
 }
 
 .text-\[60px\] {
@@ -2005,10 +1999,6 @@ input:checked + .toggle-bg {
     display: block;
   }
 
-  .sm\:grid {
-    display: grid;
-  }
-
   .sm\:hidden {
     display: none;
   }
@@ -2021,12 +2011,12 @@ input:checked + .toggle-bg {
     width: 379px;
   }
 
-  .sm\:w-\[70px\] {
-    width: 70px;
-  }
-
   .sm\:w-\[398px\] {
     width: 398px;
+  }
+
+  .sm\:w-\[70px\] {
+    width: 70px;
   }
 
   .sm\:grid-cols-2 {
@@ -2048,16 +2038,8 @@ input:checked + .toggle-bg {
     display: block;
   }
 
-  .xl\:grid {
-    display: grid;
-  }
-
   .xl\:hidden {
     display: none;
-  }
-
-  .xl\:h-\[459px\] {
-    height: 459px;
   }
 
   .xl\:h-\[617px\] {
@@ -2074,6 +2056,10 @@ input:checked + .toggle-bg {
 
   .xl\:justify-between {
     justify-content: space-between;
+  }
+
+  .xl\:text-\[40px\] {
+    font-size: 40px;
   }
 }
 
