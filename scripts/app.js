@@ -21,7 +21,10 @@ let pokemonEvolution = [];
 let pokemonEvolutionName = [];
 
 const APISearch = async (pokemon) => {
-    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+    const retreive = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`);
+    const retriveData = await retreive.json();
+
+    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${retriveData.id}`);
     const data = await promise.json();
     pokemonData = data;
     DisplayPokemonData(pokemonData);
@@ -34,7 +37,10 @@ const APISearch = async (pokemon) => {
 }
 
 const LocationAPISearch = async (pokemon) => {
-    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/encounters`);
+    const retreive = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`);
+    const retriveData = await retreive.json();
+
+    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${retriveData.id}/encounters`);
     const data = await promise.json();
     if(data.length == 0){
         pokemonLocation.textContent = 'Location Found: N/A'
