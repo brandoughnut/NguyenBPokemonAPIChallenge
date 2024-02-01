@@ -34,9 +34,9 @@ const APISearch = async (pokemon) => {
     DisplayPokemonData(pokemonData);
     let capitalizeName = pokemonNameData.name;
     if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
-        addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
+        addFavoriteBtn.src = "./assets/pokemonfavoritefill.png";
     }else{
-        addFavoriteBtn.src = "/assets/pokemonfavorite.png";
+        addFavoriteBtn.src = "./assets/pokemonfavorite.png";
     }
 }
 
@@ -88,7 +88,7 @@ const EvolutionAPI = async (pokemon) => {
         let img = document.createElement('img');
 
         if(evolutionData.sprites.other["official-artwork"].front_default == null){
-            img.src = "/assets/pokeball.png"
+            img.src = "./assets/pokeball.png"
         }else{
             img.src = evolutionData.sprites.other["official-artwork"].front_default;
         }
@@ -135,7 +135,7 @@ EvolutionAPI('1');
 const DisplayPokemonData = () => {
     // pokemon image
     if(pokemonData.sprites.other["official-artwork"].front_default == null){
-        pokemonImg.src = "/assets/pokeball.png"
+        pokemonImg.src = "./assets/pokeball.png"
     }else{
         pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
     }
@@ -200,9 +200,9 @@ pokemonImg.addEventListener('click', async () => {
     let isTrue = true;
     if(pokemonData.sprites.other["official-artwork"].front_default == null){
         if(isTrue){
-            pokemonImg.src = "/assets/pokeballmaster.png";
+            pokemonImg.src = "./assets/pokeballmaster.png";
         }else{
-            pokemonImg.src = "/assets/pokeball.png";
+            pokemonImg.src = "./assets/pokeball.png";
         }
         
     }else{
@@ -311,10 +311,10 @@ addFavoriteBtn.addEventListener('click', () => {
     let capitalizeName = pokemonNameData.name;
     if(!getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
         saveToLocalStorage(`${capitalizeName[0].toUpperCase() + capitalizeName.substring(1)} #${pokemonNameData.id}`);
-        addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
+        addFavoriteBtn.src = "./assets/pokemonfavoritefill.png";
     }else{
         removeFromLocalStorage(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id);
-        addFavoriteBtn.src = "/assets/pokemonfavorite.png";
+        addFavoriteBtn.src = "./assets/pokemonfavorite.png";
     }
     
     
@@ -349,14 +349,14 @@ getFavoritesBtn1.addEventListener('click', () => {
 
         let removeBtn = document.createElement("img");
         removeBtn.style.cursor = "pointer";
-        removeBtn.src = "/assets/pokemonremove.png";
+        removeBtn.src = "./assets/pokemonremove.png";
         removeBtn.addEventListener('click', () => {
             removeFromLocalStorage(pokemonName);
             div.remove();
             if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
-                addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
+                addFavoriteBtn.src = "./assets/pokemonfavoritefill.png";
             }else{
-                addFavoriteBtn.src = "/assets/pokemonfavorite.png";
+                addFavoriteBtn.src = "./assets/pokemonfavorite.png";
             }
         });
 
@@ -395,14 +395,14 @@ getFavoritesBtn2.addEventListener('click', () => {
 
         let removeBtn = document.createElement("img");
         removeBtn.style.cursor = "pointer";
-        removeBtn.src = "/assets/pokemonremove.png";
+        removeBtn.src = "./assets/pokemonremove.png";
         removeBtn.addEventListener('click', () => {
             removeFromLocalStorage(pokemonName);
             div.remove();
             if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
-                addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
+                addFavoriteBtn.src = "./assets/pokemonfavoritefill.png";
             }else{
-                addFavoriteBtn.src = "/assets/pokemonfavorite.png";
+                addFavoriteBtn.src = "./assets/pokemonfavorite.png";
             }
         });
 

@@ -1610,6 +1610,10 @@ input:checked + .toggle-bg {
   background-image: url(/assets/pokemongrassbg.png);
 }
 
+.bg-\[url\(\.\/assets\/pokemongrassbg\.png\)\] {
+  background-image: url(./assets/pokemongrassbg.png);
+}
+
 .bg-cover {
   background-size: cover;
 }
