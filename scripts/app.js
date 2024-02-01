@@ -169,16 +169,16 @@ pokemonSearchBtn.addEventListener('click', async () => {
 
 pokemonRandom1.addEventListener('click', async () => {
     let random = Math.floor(Math.random() * 500) + 1;
-    APISearch(random);
-    LocationAPISearch(random);
-    EvolutionAPI(random);
+    await APISearch(random);
+    await LocationAPISearch(random);
+    await EvolutionAPI(random);
 });
 
 pokemonRandom2.addEventListener('click', async () => {
     let random = Math.floor(Math.random() * 500) + 1;
-    APISearch(random);
-    LocationAPISearch(random);
-    EvolutionAPI(random);
+    await APISearch(random);
+    await LocationAPISearch(random);
+    await EvolutionAPI(random);
 });
 
 pokemonImg.addEventListener('click', async () => {
