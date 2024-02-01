@@ -17,19 +17,23 @@ let evolutionDiv = document.getElementById("evolutionDiv");
 
 let pokemonData = "";
 let evolutionData = "";
+let pokemonNameData = "";
 let pokemonEvolution = [];
 let pokemonEvolutionName = [];
 
 const APISearch = async (pokemon) => {
     const retreive = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`);
-    const retriveData = await retreive.json();
+    const retrieveData = await retreive.json();
 
-    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${retriveData.id}`);
+    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${retrieveData.id}`);
     const data = await promise.json();
     pokemonData = data;
+    pokemonNameData = retrieveData;
+    let capitalize = retrieveData.name;
+    pokemonName.textContent = `Name: ${capitalize[0].toUpperCase() + capitalize.substring(1)} #${retrieveData.id}`;
     DisplayPokemonData(pokemonData);
-    let capitalizeName = pokemonData.forms[0].name;
-    if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonData.id)){
+    let capitalizeName = pokemonNameData.name;
+    if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
         addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
     }else{
         addFavoriteBtn.src = "/assets/pokemonfavorite.png";
@@ -134,11 +138,6 @@ const DisplayPokemonData = () => {
     }else{
         pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
     }
-    
-
-    // pokemon name
-    let capitalizeName = pokemonData.forms[0].name;
-    pokemonName.textContent = `Name: ${capitalizeName[0].toUpperCase() + capitalizeName.substring(1)} #${pokemonData.id}`;
 
     // pokemon types
     let pokemonTypeArray = [];
@@ -167,9 +166,9 @@ const DisplayPokemonData = () => {
 }
 
 pokemonSearchBtn.addEventListener('click', async () => {
-    APISearch(pokemonInput.value);
-    LocationAPISearch(pokemonInput.value);
-    EvolutionAPI(pokemonInput.value);
+    APISearch(pokemonInput.value.toLowerCase());
+    LocationAPISearch(pokemonInput.value.toLowerCase());
+    EvolutionAPI(pokemonInput.value.toLowerCase());
     pokemonInput.value = "";
 });
 
@@ -299,12 +298,12 @@ const removeFromLocalStorage = (pokemon) => {
 }
 
 addFavoriteBtn.addEventListener('click', () => {
-    let capitalizeName = pokemonData.forms[0].name;
-    if(!getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonData.id)){
-        saveToLocalStorage(`${capitalizeName[0].toUpperCase() + capitalizeName.substring(1)} #${pokemonData.id}`);
+    let capitalizeName = pokemonNameData.name;
+    if(!getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
+        saveToLocalStorage(`${capitalizeName[0].toUpperCase() + capitalizeName.substring(1)} #${pokemonNameData.id}`);
         addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
     }else{
-        removeFromLocalStorage(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonData.id);
+        removeFromLocalStorage(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id);
         addFavoriteBtn.src = "/assets/pokemonfavorite.png";
     }
     
@@ -313,7 +312,7 @@ addFavoriteBtn.addEventListener('click', () => {
 });
 
 getFavoritesBtn1.addEventListener('click', () => {
-    let capitalizeName = pokemonData.forms[0].name;
+    let capitalizeName = pokemonNameData.name;
     let favorites = getLocalStorage();
 
     getFavoritesDiv.textContent = "";
@@ -344,7 +343,7 @@ getFavoritesBtn1.addEventListener('click', () => {
         removeBtn.addEventListener('click', () => {
             removeFromLocalStorage(pokemonName);
             div.remove();
-            if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonData.id)){
+            if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
                 addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
             }else{
                 addFavoriteBtn.src = "/assets/pokemonfavorite.png";
@@ -359,7 +358,7 @@ getFavoritesBtn1.addEventListener('click', () => {
 });
 
 getFavoritesBtn2.addEventListener('click', () => {
-    let capitalizeName = pokemonData.forms[0].name;
+    let capitalizeName = pokemonNameData.name;
     let favorites = getLocalStorage();
 
     getFavoritesDiv.textContent = "";
@@ -390,7 +389,7 @@ getFavoritesBtn2.addEventListener('click', () => {
         removeBtn.addEventListener('click', () => {
             removeFromLocalStorage(pokemonName);
             div.remove();
-            if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonData.id)){
+            if(getLocalStorage().includes(capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+pokemonNameData.id)){
                 addFavoriteBtn.src = "/assets/pokemonfavoritefill.png";
             }else{
                 addFavoriteBtn.src = "/assets/pokemonfavorite.png";
