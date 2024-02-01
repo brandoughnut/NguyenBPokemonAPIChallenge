@@ -49,7 +49,7 @@ const LocationAPISearch = async (pokemon) => {
     if(data.length == 0){
         pokemonLocation.textContent = 'Location Found: N/A'
     }else{
-       pokemonLocation.textContent = `Location Found: ${data[0].location_area.name}`; 
+       pokemonLocation.textContent = `Location Found: ${data[0].location_area.name.split("-").join(" ")}`; 
     }
     
 }
@@ -95,6 +95,7 @@ const EvolutionAPI = async (pokemon) => {
         
         img.style.height = "200px";
         img.style.width = "200px";
+        img.style.cursor = "pointer";
 
         img.addEventListener('click', async () => {
             APISearch(pokemonEvolution[i]);
@@ -105,7 +106,7 @@ const EvolutionAPI = async (pokemon) => {
 
         innerDiv.appendChild(img);
 
-        innerDiv.className = "bg-white/75 rounded-[200px] px-5 py-5";
+        innerDiv.className = "bg-white/75 rounded-[200px] px-5 py-5 joe";
 
         let brotherDiv = document.createElement('div');
 
@@ -170,6 +171,15 @@ pokemonSearchBtn.addEventListener('click', async () => {
     LocationAPISearch(pokemonInput.value.toLowerCase());
     EvolutionAPI(pokemonInput.value.toLowerCase());
     pokemonInput.value = "";
+});
+
+pokemonInput.addEventListener('keydown', async(event) => {
+    if(event.key == "Enter"){
+        APISearch(pokemonInput.value.toLowerCase());
+        LocationAPISearch(pokemonInput.value.toLowerCase());
+        EvolutionAPI(pokemonInput.value.toLowerCase());
+        pokemonInput.value = "";
+    }
 });
 
 pokemonRandom1.addEventListener('click', async () => {
