@@ -18,6 +18,7 @@ let evolutionDiv = document.getElementById("evolutionDiv");
 let pokemonData = "";
 let evolutionData = "";
 let pokemonEvolution = [];
+let pokemonEvolutionName = [];
 
 const APISearch = async (pokemon) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
@@ -45,24 +46,29 @@ const LocationAPISearch = async (pokemon) => {
 
 const EvolutionAPI = async (pokemon) => {
     pokemonEvolution = [];
+    pokemonEvolutionName = [];
     const promise = await fetch (`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`);
     const data = await promise.json();
 
     const promise2 = await fetch(data.evolution_chain.url);
     const data2 = await promise2.json();
+    let evolutionPush = data2.chain.species.url;
+    let evolutionPush2 = evolutionPush.substring(42, 50)
 
-    pokemonEvolution.push(data2.chain.species.name);
+    pokemonEvolution.push(evolutionPush2.slice(0, -1));
+    pokemonEvolutionName.push(data2.chain.species.name);
     if(data2.chain.evolves_to != null){
         data2.chain.evolves_to.map((evolution) => {
-            pokemonEvolution.push(evolution.species.name);
+            pokemonEvolution.push(evolution.species.url.substring(42, 50).slice(0, -1));
+            pokemonEvolutionName.push(evolution.species.name);
         });
         if(data2.chain.evolves_to.length != 0 && data2.chain.evolves_to.length != 0){
             data2.chain.evolves_to[0].evolves_to.map((evolution) => {
-                pokemonEvolution.push(evolution.species.name);
+                pokemonEvolution.push(evolution.species.url.substring(42, 50).slice(0, -1));
+                pokemonEvolutionName.push(evolution.species.name);
             });
         }
     }
-    console.log(pokemonEvolution);
     evolutionDiv.textContent = "";
     for(let i = 0; i<pokemonEvolution.length; i++){
         const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonEvolution[i]}`);
@@ -71,7 +77,12 @@ const EvolutionAPI = async (pokemon) => {
 
         let img = document.createElement('img');
 
-        img.src = evolutionData.sprites.other["official-artwork"].front_default;
+        if(evolutionData.sprites.other["official-artwork"].front_default == null){
+            img.src = "/assets/pokeball.png"
+        }else{
+            img.src = evolutionData.sprites.other["official-artwork"].front_default;
+        }
+        
         img.style.height = "200px";
         img.style.width = "200px";
 
@@ -88,7 +99,7 @@ const EvolutionAPI = async (pokemon) => {
 
         let brotherDiv = document.createElement('div');
 
-        let capitalizeName = pokemonEvolution[i];
+        let capitalizeName = pokemonEvolutionName[i];
         brotherDiv.className = "text-center text-[30px] mt-4";
         brotherDiv.style.fontFamily = "Jura-Bold";
         brotherDiv.textContent = capitalizeName[0].toUpperCase() + capitalizeName.substring(1)+" #"+evolutionData.id;
@@ -112,7 +123,12 @@ EvolutionAPI('1');
 
 const DisplayPokemonData = () => {
     // pokemon image
-    pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
+    if(pokemonData.sprites.other["official-artwork"].front_default == null){
+        pokemonImg.src = "/assets/pokeball.png"
+    }else{
+        pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
+    }
+    
 
     // pokemon name
     let capitalizeName = pokemonData.forms[0].name;
@@ -152,25 +168,36 @@ pokemonSearchBtn.addEventListener('click', async () => {
 });
 
 pokemonRandom1.addEventListener('click', async () => {
-    let random = Math.floor(Math.random() * 1025) + 1;
+    let random = Math.floor(Math.random() * 500) + 1;
     APISearch(random);
     LocationAPISearch(random);
     EvolutionAPI(random);
 });
 
 pokemonRandom2.addEventListener('click', async () => {
-    let random = Math.floor(Math.random() * 1025) + 1;
+    let random = Math.floor(Math.random() * 500) + 1;
     APISearch(random);
     LocationAPISearch(random);
     EvolutionAPI(random);
 });
 
 pokemonImg.addEventListener('click', async () => {
-    if(pokemonImg.src == pokemonData.sprites.other["official-artwork"].front_default){
-        pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_shiny;
+    let isTrue = true;
+    if(pokemonData.sprites.other["official-artwork"].front_default == null){
+        if(isTrue){
+            pokemonImg.src = "/assets/pokeballmaster.png";
+        }else{
+            pokemonImg.src = "/assets/pokeball.png";
+        }
+        
     }else{
-        pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
+        if(pokemonImg.src == pokemonData.sprites.other["official-artwork"].front_default){
+            pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_shiny;
+        }else{
+            pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
+        }
     }
+    
 });
 
 
@@ -298,11 +325,11 @@ getFavoritesBtn1.addEventListener('click', () => {
         div.style.paddingRight = "10px";
         div.style.fontFamily = "Jura-Bold";
         div.style.cursor = "pointer";
-
+        let newID = pokemonName.split(" ")[1];
         div.addEventListener('click', async () => {
-            await APISearch(pokemonName.split(" ")[0].toLowerCase());
-            await LocationAPISearch(pokemonName.split(" ")[0].toLowerCase());
-            await EvolutionAPI(pokemonName.split(" ")[0].toLowerCase());
+            await APISearch(parseInt(newID.substring(1, 10)));
+            await LocationAPISearch(parseInt(newID.substring(1, 10)));
+            await EvolutionAPI(parseInt(newID.substring(1, 10)));
         });
 
         let removeBtn = document.createElement("img");
@@ -331,7 +358,6 @@ getFavoritesBtn2.addEventListener('click', () => {
 
     getFavoritesDiv.textContent = "";
 
-
         favorites.map((pokemonName) => {
         
         let div = document.createElement("div");
@@ -345,11 +371,11 @@ getFavoritesBtn2.addEventListener('click', () => {
         div.style.paddingRight = "10px";
         div.style.fontFamily = "Jura-Bold";
         div.style.cursor = "pointer";
-
+        let newID = pokemonName.split(" ")[1];
         div.addEventListener('click', async () => {
-            await APISearch(pokemonName.split(" ")[0].toLowerCase());
-            await LocationAPISearch(pokemonName.split(" ")[0].toLowerCase());
-            await EvolutionAPI(pokemonName.split(" ")[0].toLowerCase());
+            await APISearch(parseInt(newID.substring(1, 10)));
+            await LocationAPISearch(parseInt(newID.substring(1, 10)));
+            await EvolutionAPI(parseInt(newID.substring(1, 10)));
         });
 
         let removeBtn = document.createElement("img");
