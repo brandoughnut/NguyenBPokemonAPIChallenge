@@ -1606,10 +1606,6 @@ input:checked + .toggle-bg {
   background-color: rgb(255 255 255 / 0.75);
 }
 
-.bg-\[url\(\/assets\/pokemongrassbg\.png\)\] {
-  background-image: url(/assets/pokemongrassbg.png);
-}
-
 .bg-\[url\(\.\/assets\/pokemongrassbg\.png\)\] {
   background-image: url(./assets/pokemongrassbg.png);
 }
